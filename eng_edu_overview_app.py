@@ -9,21 +9,21 @@ import base64
 
 def run_edu_overview_app():
 
-    df_edu = pd.read_csv('data/eng_sample_data_overview.csv')
+    df_edu = pd.read_csv('data/jp_sample_overview.csv')
 
     st.header('■教科別・クラス別成績分析')
     st.write('テスト結果の概観やクラスごとの傾向が把握できます.')
         
     st.sidebar.subheader('データアップロード')
     
-    df_edu = pd.read_csv("data/eng_sample_data_overview.csv")
+    df_edu = pd.read_csv("data/jp_sample_overview.csv")
     def download_link(object_to_download, download_filename, download_link_text):
         if isinstance(object_to_download,pd.DataFrame):
             object_to_download = object_to_download.to_csv(index=False, encoding = 'utf_8_sig')
             b64 = base64.b64encode(object_to_download.encode()).decode()
             return f'<a href="data:file/txt;base64,{b64}" download="{download_filename}">{download_link_text}</a>'
 
-    tmp_download_link = download_link(df_edu, 'sample_overview.csv', 'サンプルCSV（utf-8）ダウンロード.')
+    tmp_download_link = download_link(df_edu, 'jp_sample_overview.csv', 'サンプルCSV（utf-8）ダウンロード.')
     st.sidebar.markdown(tmp_download_link, unsafe_allow_html=True)
 
 #     st.sidebar.info("""
@@ -44,7 +44,7 @@ def run_edu_overview_app():
                 st.dataframe(df_edu)
 
         else:
-            df_edu = pd.read_csv('data/eng_sample_data_overview.csv')
+            df_edu = pd.read_csv('data/jp_sample_overview.csv')
 
             show_df = st.sidebar.checkbox('データ内容を表示.')
             if show_df == True:
