@@ -19,7 +19,7 @@ from eng_sampling_adequacy_app import run_sampling_adequacy_app
 def main():
     st.title("教育データ分析WEB (β version)")
 
-    menu = ["HOME",'クラス別分析','詳細分析',
+    menu = ["HOME",'教科別・クラス別成績分析','詳細分析',
             '相関分析',
             '得点予測',
             '合否予測','アンケートテキスト分析',
@@ -35,7 +35,7 @@ def main():
         st.header("■分析メニュー")
         st.write('左サイドメニューから機能を選択してください。')
         # st.subheader('Menu')
-        st.subheader('- クラス別分析:')
+        st.subheader('- 教科別・クラス別成績分析:')
         st.write(' テスト結果の概要を知りたい.クラスごとの傾向を視覚的に把握したい.')
         st.subheader('- 詳細分析: ')
         st.write('学習時間と学力との関係を調べたい.')
@@ -64,7 +64,7 @@ def main():
         st.subheader("- コースレコメンド")
         st.write("生徒のレベルに合った最適なコースを推奨したい.")
         
-    elif choice == "クラス別分析":
+    elif choice == "教科別・クラス別成績分析":
         # run_overview_app()
         run_edu_overview_app()
 
