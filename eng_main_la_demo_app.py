@@ -33,7 +33,7 @@ def main():
 
     if choice =='HOME':
         st.header("■分析メニュー")
-        st.write('左サイドメニューから機能を選択してください.')
+        st.write('このWEBサービスで提供される分析機能は以下の通りです。左サイドメニューから機能を選択し、分析を行います.')
         # st.subheader('Menu')
         st.subheader('- 教科別・クラス別成績分析:')
         st.write(' テスト結果の平均、分散をクラスごとに視覚的に確認したい.')
