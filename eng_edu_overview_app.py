@@ -46,7 +46,7 @@ def run_edu_overview_app():
         else:
             df_edu = pd.read_csv('data/eng_sample_data_overview.csv')
 
-            show_df = st.sidebar.checkbox('Show DataFreme')
+            show_df = st.sidebar.checkbox('データ内容を表示.')
             if show_df == True:
                 st.write(df_edu)
 
