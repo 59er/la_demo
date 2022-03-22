@@ -19,12 +19,12 @@ from eng_sampling_adequacy_app import run_sampling_adequacy_app
 def main():
     st.title("教育データ分析WEB(β version)")
 
-    menu = ["HOME",'Overview of learning situation','Detailed analysis',
-            'Correlation analysis',
-            'Score prediction',
-            'Pass/Fail Prediction','Questionnaire text analysis',
-            'Exam questions/questionnaire reliability measurement','Exam questions difficulty and discrimination analysis','Sampling adequacy',
-            'Cluster analysis','t-test','Factor analysis','Time series analysis','Course recommend']
+    menu = ["HOME",'クラス別分析','詳細分析',
+            '相関分析',
+            '得点予測',
+            '合否予測','アンケートテキスト分析',
+            'テスト・アンケートの信頼性測定','テスト難易度と識別力分析',
+            'クラスター分析','t検定','サンプルサイズ妥当性測定','因子分析','時系列分析','コースレコメンド']
  
     choice = st.sidebar.selectbox("MENU",menu)
     st.sidebar.text('Select a function from the MENU.')
@@ -32,79 +32,79 @@ def main():
     # choice = st.sidebar.selectbox("Menu",menu)
 
     if choice =='HOME':
-        st.header("■Analytic Function Menu")
+        st.header("■分析メニュー")
         st.write('The following learning analysis can be selected from the sidebar menu.')
         # st.subheader('Menu')
-        st.subheader('- Overview of learning situation:')
+        st.subheader('- クラス別分析:')
         st.write(' To get an overview of the test results. To understand the trend of each class visually.')
-        st.subheader('- Detailed analysis: ')
+        st.subheader('- 詳細分析: ')
         st.write('To investigate the relationship between learning time and academic achievement.')
-        st.subheader('- Correlation analysis: ')
+        st.subheader('- 相関分析: ')
         st.write('To investigate the relationship between midterm and final exam grades.')
-        st.subheader('- Score prediction: ')
+        st.subheader('- 得点予測: ')
         st.write(' To predict the expected score of students who are absent from the test.')
-        st.subheader('- Pass/Fail Prediction: ')
+        st.subheader('- 合否予測: ')
         st.write('To know what makes students pass or fail.')
-        st.subheader('- Questionnaire text analysis:')
+        st.subheader('- アンケートテキスト分析:')
         st.write(' To analyze the free text of the class evaluation questionnaire.')
-        st.subheader('- Exam questions/questionnaire reliability measurement: ')
+        st.subheader('- テスト・アンケートの信頼性測定: ')
         st.write('To measure the validity and reliability of tests.')
-        st.subheader('- Difficulty and discrimination analysis for Exam Questions:')
+        st.subheader('- テスト難易度と識別力分析:')
         st.write(' To grade each test based on its difficulty and discrimination.')
-        st.subheader('- Cluster analysis: ')
+        st.subheader('- クラスター分析: ')
         st.write('To group students who have similar learning characteristics.')
-        st.subheader('- t-test: ')
+        st.subheader('- t検定: ')
         st.write('To compare the results of two tests. e.g., examine the difference in performance by teaching method.')
-        st.subheader('Sampling adequacy')
+        st.subheader('サンプルサイズ妥当性測定')
         st.write('To investigate the adequay of the number of samples for questionnaire.')
-        st.subheader('- Factor analysis: ')
+        st.subheader('- 因子分析: ')
         st.write('To create and analyze a class evaluation questionnaire.')
-        st.subheader("- Time series analysis:")
+        st.subheader("- 時系列分析:")
         st.write( "To visualize the academic achievement over time.")
-        st.subheader("- Course recommend")
+        st.subheader("- コースレコメンド")
         st.write("To recommend optimal study course for learners")
         
-    elif choice == "Overview of learning situation":
+    elif choice == "クラス別分析":
         # run_overview_app()
         run_edu_overview_app()
 
-    elif choice == "Detailed analysis":
+    elif choice == "詳細分析":
         run_edu_detail_app()
 
-    elif choice == "Correlation analysis":
+    elif choice == "相関分析":
         run_corr_app()
 
-    elif choice == "Score prediction":
+    elif choice == "得点予測":
         run_edu_score_prediction_app()
 
-    elif choice == "Pass/Fail Prediction":
+    elif choice == "合否予測":
         run_edu_pass_fail_prediction_app()
 
-    elif choice == "Questionnaire text analysis":
+    elif choice == "アンケートテキスト分析":
         run_text_mining_app()
 
-    elif choice == "Exam questions/questionnaire reliability measurement":
+    elif choice == "テスト・アンケートの信頼性測定":
         run_test_cronbach_alpha_app()
 
-    elif choice == 'Exam questions difficulty and discrimination analysis':
+    elif choice == 'テスト難易度と識別力分析':
         run_test_difficulty_app()
         
-    elif choice == "Sampling adequacy":
+    elif choice == "サンプルサイズ妥当性測定":
         run_sampling_adequacy_app()
 
-    elif choice == "Cluster analysis":
+    elif choice == "クラスター分析":
         run_cluster_app()
 
-    elif choice == "t-test":
+    elif choice == "t検定":
         run_t_test_app()
 
-    elif choice == "Factor analysis":
+    elif choice == "因子分析":
         run_factor_app()
 
-    elif choice == 'Time series analysis':
+    elif choice == '時系列分析':
         run_time_analysis_app()
 
-    elif choice == 'Course recommend':
+    elif choice == 'コースレコメンド':
         run_course_recommend_app()
 
 if __name__ == '__main__':
