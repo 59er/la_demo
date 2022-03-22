@@ -17,7 +17,7 @@ from eng_course_recommend_app import run_course_recommend_app
 from eng_sampling_adequacy_app import run_sampling_adequacy_app
 
 def main():
-    st.title("教育データ分析WEB\n (β version)")
+    st.title("教育データ分析WEB(β version)")
 
     menu = ["HOME",'Overview of learning situation','Detailed analysis',
             'Correlation analysis',
