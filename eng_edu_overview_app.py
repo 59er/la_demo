@@ -11,10 +11,10 @@ def run_edu_overview_app():
 
     df_edu = pd.read_csv('data/eng_sample_data_overview.csv')
 
-    st.header('■Overview')
-    st.write('To get an overview of the test results and to understand the trend of each class visually.')
+    st.header('■教科別・クラス別成績分析')
+    st.write('テスト結果の概観やクラスごとの傾向が把握できます.')
         
-    st.sidebar.subheader('Data Upload')
+    st.sidebar.subheader('データアップロード')
     
     df_edu = pd.read_csv("data/eng_sample_data_overview.csv")
     def download_link(object_to_download, download_filename, download_link_text):
@@ -23,14 +23,14 @@ def run_edu_overview_app():
             b64 = base64.b64encode(object_to_download.encode()).decode()
             return f'<a href="data:file/txt;base64,{b64}" download="{download_filename}">{download_link_text}</a>'
 
-    tmp_download_link = download_link(df_edu, 'sample_overview.csv', 'Download sample csv file.')
+    tmp_download_link = download_link(df_edu, 'sample_overview.csv', 'サンプルCSV（utf-8）ダウンロード.')
     st.sidebar.markdown(tmp_download_link, unsafe_allow_html=True)
 
 #     st.sidebar.info("""
 #     [Download the sample csv file](https://github.com/59er/eng_learning_analytics_web/blob/master/sample_data/eng_sample_data_overview_for_web_without_G.csv)
 #         """)
     try:
-        uploaded_file = st.sidebar.file_uploader("File upload (Drag and drop or use [Browse files] button to import csv file. Only utf-8 format is available.）", type=["csv"])
+        uploaded_file = st.sidebar.file_uploader("ファイルアップロード (utf-8フォーマットのCSVファイルをドラックまたは[Browse files]から選択））", type=["csv"])
         # uploaded_file = st.file_uploader(
         #     label = 'File Upload（drag and drop csv/Excel）',
         #     type = ['csv', 'xlsx']
@@ -38,7 +38,7 @@ def run_edu_overview_app():
         if uploaded_file is not None:
             df_edu = pd.read_csv(uploaded_file)
             uploaded_file.seek(0)
-            display_data = st.sidebar.checkbox(label = 'Show uploaded data')
+            display_data = st.sidebar.checkbox(label = 'アップロードデータを表示.')
             
             if display_data:
                 st.dataframe(df_edu)
@@ -51,12 +51,12 @@ def run_edu_overview_app():
                 st.write(df_edu)
 
 
-        st.subheader('Score distribution for each subject')
+        st.subheader('・教科別得点分布')
 
     #Select subject
         subject_list = df_edu['Subject'].unique()
         option_subject = st.selectbox(
-            'Subject：Select a subject.',
+            'Subject：教科を選択してください.',
             (subject_list)
         )
         df_subject = df_edu[df_edu['Subject']== option_subject]
@@ -74,14 +74,14 @@ def run_edu_overview_app():
         df_subject_mean = df_subject_mean[df_subject_mean['Subject'] == option_subject]    
         st.dataframe(df_subject_mean.round(2))
 
-        st.subheader('Score distribution for each class')
-        st.text('* The average points are connected by a dotted line')
+        st.subheader('・クラス別得点分布')
+        st.text('※平均点を点線でつないでいます')
     #Score by class
 
         fig, ax = plt.subplots(figsize=(20, 10))
-        plt.title("Score by class")
-        plt.xlabel('Class')
-        plt.ylabel('Score')
+        plt.title("クラス別得点")
+        plt.xlabel('クラス')
+        plt.ylabel('得点')
         #To display mean
         ax = RainCloud(data=df_subject, y='Score', x='Class', ax=ax, pointplot = True, 
         point_linestyles='--',
@@ -92,10 +92,10 @@ def run_edu_overview_app():
         ax.grid()
         st.pyplot()
 
-        st.subheader('Test details for each class')
+        st.subheader('各クラスのテスト詳細')
         class_list = df_edu['Class'].unique()
         option_class = st.selectbox(
-            'Class：Select a class.',
+            'Class：クラスを選択してください.',
             (class_list)
         )
         #Mean
@@ -109,12 +109,13 @@ def run_edu_overview_app():
         df_var = df_var.reset_index()
         df_var = df_var[df_var['Class'] == option_class]
     
-        st.subheader('・Mean and variance')
+        st.subheader('・平均点')
 
         st.dataframe(df_mean.round(2))
+        st.subheader('・分散')
         st.dataframe(df_var.round(2))
 
-        st.subheader('・Score Distribution')
+        st.subheader('・得点分布')
         #Histgram for selected class
 
         df_subject_class = df_subject[df_subject['Class'] == option_class]
