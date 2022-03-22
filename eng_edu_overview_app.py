@@ -99,12 +99,12 @@ def run_edu_overview_app():
             (class_list)
         )
         #Mean
-        df_mean = df_edu.groupby(['Class','Subject','Teacher']).mean()
+        df_mean = df_edu.groupby(['Class','Subject','講師']).mean()
         df_mean.rename(columns = {'Score':'Mean'}, inplace = True)
         df_mean = df_mean.reset_index()
         df_mean = df_mean[df_mean['Class'] == option_class]
         #Variance
-        df_var = df_edu.groupby(['Class','Subject','Teacher']).var()
+        df_var = df_edu.groupby(['Class','Subject','講師']).var()
         df_var.rename(columns = {'Score':'Variance'}, inplace = True)
         df_var = df_var.reset_index()
         df_var = df_var[df_var['Class'] == option_class]
